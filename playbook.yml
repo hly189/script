@@ -1,0 +1,5 @@
+---
+- hosts: "{{ target }}"
+  tasks: 
+   - name: Install apache webservice
+     apt: pkg=apache2 state=installed update_cache=true
