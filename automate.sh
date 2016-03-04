@@ -4,20 +4,24 @@
 i=0
 while read line
 do
-    array[ $i ]="$line"        
+    array[ $i ]="$line"
+    #echo ${array[ $i ]}        
     i=$[$i+1]
 #replace locahost by you machine's host
 done < <(cat localhosts) 
 
-length=$[${#array[@]}-1]
+for index in "${!array[@]}"
+do 
+	length=$index
+done
 
 i=0
-while [ $i -lt $length ]
+while [ $i -le $length ]
 do
 	j=0
 	while [ $j -lt 3 ]; do
 		#replace this playbook by your playbook, but the host should be {{ target }}  
-		ansible-playbook -i hosts playbook.yml -e"target=${array[i]}"
+		ansible-playbook -i hosts playbook.yml -e"${array[i]}"
 		i=$[$i+1]
 		j=$[$j+1]
 	done
@@ -28,4 +32,5 @@ do
 		break
 	fi
 done 
+
 
