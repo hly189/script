@@ -1,11 +1,12 @@
 #! /bin/bash
 
+# This script is used to run 3 machines at the same time
 i=0
 while read line
 do
     array[ $i ]="$line"        
     i=$[$i+1]
-#replace locahost by you file
+#replace locahost by you machine's host
 done < <(cat localhosts) 
 
 length=$[${#array[@]}-1]
