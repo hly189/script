@@ -5,7 +5,6 @@ i=0
 while read line
 do
     array[ $i ]="$line"
-    #echo ${array[ $i ]}        
     i=$[$i+1]
 #replace locahost by you machine's host
 done < <(cat localhosts) 
@@ -25,11 +24,14 @@ do
 		i=$[$i+1]
 		j=$[$j+1]
 	done
-	echo "Do you want to continue? (yes/no)"
-	read value
-	if [[ $value == "no" ]]
-	then 
-		break
+	if [[ $i -le $length ]]
+	then
+		echo "Do you want to continue? (yes/no)"
+		read value
+		if [[ $value == "no" ]]
+		then 
+			break
+		fi
 	fi
 done 
 
