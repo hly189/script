@@ -21,7 +21,7 @@ do
 	j=0
 	while [ $j -lt 3 ]; do
 		#replace this playbook by your playbook, but the host should be {{ target }}  
-		ansible-playbook -i hosts playbook.yml -e"${array[i]}"
+		ansible-playbook -i hosts playbook.yml -e"target=$array[i]}"
 		i=$[$i+1]
 		j=$[$j+1]
 	done
