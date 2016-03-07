@@ -28,11 +28,12 @@ done < <(aws ec2 describe-instances --region us-west-2 --instance $INSTANCE_ID |
 aws ec2 terminate-instances --region $REGION --instance-ids $INSTANCE_ID
 
 sleep 120
+
 for index in "${!vol[@]}"
 do
         length=$index
 done
-echo $length
+#echo $length
 
 i=0
 while [ $i -le $length ]
