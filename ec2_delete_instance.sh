@@ -28,9 +28,14 @@ done < <(aws ec2 describe-instances --region us-west-2 --instance $INSTANCE_ID |
 aws ec2 terminate-instances --region $REGION --instance-ids $INSTANCE_ID
 
 sleep 120
+for index in "${!vol[@]}"
+do
+        length=$index
+done
+echo $length
 
 i=0
-while [ $i -lt 2 ]
+while [ $i -le $length ]
 do 
 	aws ec2 delete-volume --region $REGION --volume-id ${vol[$i]}
 	#echo ${vol[$i]}
