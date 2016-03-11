@@ -8,9 +8,9 @@ usage()
 	usage: $0 -g parser -a parserapp 
 
 	OPTIONS:
-	-h help
-	-g group such as parser, spliter, etc
-	-a Applications such as parserapp, spliterapp, etc 
+	-h --help: print help
+	-g --group: group such as parser, spliter, etc
+	-a --application: Applications such as parserapp, spliterapp, etc 
 EOF
 }
 
