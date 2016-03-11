@@ -2,18 +2,48 @@
 
 # This script is used to run 3 machines at the same time
 
-display_usage(){
-        echo -e "\nExample Usage:\n$0 parser parserapp \n"
-        }
+usage()
+{
+	cat << EOF
+	usage: $0 -g parser -a parserapp 
 
-if [ $# -lt 2 ]
+	This script run the test1 or test2 over a machine.
+
+	OPTIONS:
+	-h help
+	-g group such as parser, spliter, etc
+	-a Applications such as parserapp, spliterapp, etc 
+EOF
+}
+
+APP=
+APP_SERVICE=
+
+while getopts “hg:a:” OPTION
+do
+     case $OPTION in
+         h|--help)
+             usage
+             exit 1
+             ;;
+         g|--group)
+             APP=$OPTARG
+             ;;
+         a|--application)
+             APP_SERVICE=$OPTARG
+             ;;
+	 ?)
+             usage
+             exit
+             ;;
+     esac
+done
+
+if [[ -z $APP ]] || [[ -z $APP_SERVICE ]] 
 then
-        display_usage
-        exit 1
+     usage
+     exit 1
 fi
-
-APP=$1
-APP_SERVICE=$2
 
 i=0
 while read line
@@ -33,7 +63,7 @@ while [ $i -lt $[$length+1] ]
 do
 	j=0
 	while [ $j -lt 3 ]; do
-		#replace this playbook by your playbook, but the host should be {{ target }}  
+		#replace this line by your command 
 		#ansible-playbook -i hosts playbook.yml -e"target=${array[i]}"
 		echo ${array[i]} $APP $APP_SERVICE
 		i=$[$i+1]
@@ -47,7 +77,7 @@ do
 	then
 		echo "Do you want to continue? (yes/no)"
 		read value
-		if [[ $value == "no" ]]
+		if [[ $value == "no" || $value == "n" ]]
 		then 
 			break
 		fi
