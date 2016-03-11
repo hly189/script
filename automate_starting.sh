@@ -7,7 +7,7 @@ do
     array[ $i ]="$line"
     i=$[$i+1]
 #replace locahost by you machine's host
-done < <(cat localhosts | cut -d " " -f 1) 
+done < <(cat localhosts2 | cut -d " " -f 1) 
 
 for index in "${!array[@]}"
 do 
@@ -15,13 +15,18 @@ do
 done
 
 i=0
-while [ $i -le $length ]
+while [ $i -lt $[$length+1] ]
 do
 	j=0
 	while [ $j -lt 3 ]; do
 		#replace this playbook by your playbook, but the host should be {{ target }}  
-		ansible-playbook -i hosts playbook.yml -e"target=${array[i]}"
+		#ansible-playbook -i hosts playbook.yml -e"target=${array[i]}"
+		echo ${array[i]}
 		i=$[$i+1]
+		if [[ $i -ge $[$length+1] ]]
+		then
+			break 
+		fi
 		j=$[$j+1]
 	done
 	if [[ $i -le $length ]]
