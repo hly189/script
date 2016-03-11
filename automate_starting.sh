@@ -71,6 +71,8 @@ do
 		fi
 		j=$[$j+1]
 	done
+	echo "Sleep 3 minutes"
+	sleep 5
 	if [[ $i -le $length ]]
 	then
 		echo "Do you want to continue? (yes/no)"
