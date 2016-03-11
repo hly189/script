@@ -7,8 +7,6 @@ usage()
 	cat << EOF
 	usage: $0 -g parser -a parserapp 
 
-	This script run the test1 or test2 over a machine.
-
 	OPTIONS:
 	-h help
 	-g group such as parser, spliter, etc
