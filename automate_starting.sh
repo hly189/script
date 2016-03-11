@@ -1,13 +1,27 @@
 #! /bin/bash
 
 # This script is used to run 3 machines at the same time
+
+display_usage(){
+        echo -e "\nExample Usage:\n$0 parser parserapp \n"
+        }
+
+if [ $# -lt 2 ]
+then
+        display_usage
+        exit 1
+fi
+
+APP=$1
+APP_SERVICE=$2
+
 i=0
 while read line
 do
     array[ $i ]="$line"
     i=$[$i+1]
 #replace locahost by you machine's host
-done < <(cat localhosts2 | cut -d " " -f 1) 
+done < <(cat $APP | cut -d " " -f 1) 
 
 for index in "${!array[@]}"
 do 
@@ -21,7 +35,7 @@ do
 	while [ $j -lt 3 ]; do
 		#replace this playbook by your playbook, but the host should be {{ target }}  
 		#ansible-playbook -i hosts playbook.yml -e"target=${array[i]}"
-		echo ${array[i]}
+		echo ${array[i]} $APP $APP_SERVICE
 		i=$[$i+1]
 		if [[ $i -ge $[$length+1] ]]
 		then
