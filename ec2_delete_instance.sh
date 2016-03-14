@@ -20,12 +20,15 @@ read INSTANCE_ID
 while read line
 do
     vol[ $i ]="$line"
-    #echo ${vol[$i]}
+    echo The volume is ${vol[$i]}
     i=$[$i+1]
 done < <(aws ec2 describe-instances --region us-west-2 --instance $INSTANCE_ID | awk '/VolumeId/{gsub(/[",]+/, "", $2); print $2}')
 
 
 aws ec2 terminate-instances --region $REGION --instance-ids $INSTANCE_ID
+
+date
+echo Sleeping 2 minutes before deleting the volumes 
 
 sleep 120
 
@@ -39,6 +42,6 @@ i=0
 while [ $i -le $length ]
 do 
 	aws ec2 delete-volume --region $REGION --volume-id ${vol[$i]} || true
-	#echo ${vol[$i]}
+	echo Deleting ${vol[$i]}
 	 i=$[$i+1]
 done 
