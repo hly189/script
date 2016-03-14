@@ -38,7 +38,7 @@ done
 i=0
 while [ $i -le $length ]
 do 
-	aws ec2 delete-volume --region $REGION --volume-id ${vol[$i]}
+	aws ec2 delete-volume --region $REGION --volume-id ${vol[$i]} || true
 	#echo ${vol[$i]}
 	 i=$[$i+1]
 done 
