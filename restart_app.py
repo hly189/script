@@ -27,7 +27,7 @@ while i < len(MACHINE):
                 SUB_MACHINE.append(MACHINE[i])
                 print (SUB_MACHINE[j])
                 i = i+1
-                if i >= len(MACHINE)-1: break
+                if i >= len(MACHINE): break
                 j = j+1
 	a = "{}".format(":".join(SUB_MACHINE)) + " " + args.a
 	os.system("echo" + " " + a)
