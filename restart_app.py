@@ -1,13 +1,18 @@
+#!/usr/bin/env python
+
 import os
 import subprocess
+from sys import argv
 from subprocess import PIPE
 
 
 #command = os.popen("cat localhosts")
 #now = command.read()
 
+script, first, second = argv
+
 MACHINE = []
-with os.popen('cat localhosts') as f: 
+with os.popen("cat"+" " +first) as f: 
 	MACHINE=[line.split()[0] for line in f]
 
 i = 0
@@ -20,7 +25,11 @@ while i < len(MACHINE):
                 i = i+1
                 if i >= len(MACHINE)-1: break
                 j = j+1
-	print('The machines are {}'.format(': '.join(SUB_MACHINE)))
+	a = "{}".format(": ".join(SUB_MACHINE)) + " " + second
+	os.system("echo" + " " + a)
+	os.system("echo sleep 3 mins")
+	os.system("date")
+	os.system("sleep 2")
 	if (i < len(MACHINE)):
 		answer = raw_input("Do you want to show the name of files: (y/n): ")
         	if (answer == "no" or answer == 'n') :

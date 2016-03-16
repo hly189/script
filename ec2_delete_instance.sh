@@ -36,7 +36,6 @@ for index in "${!vol[@]}"
 do
         length=$index
 done
-#echo $length
 
 i=0
 while [ $i -le $length ]
