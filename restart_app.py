@@ -35,6 +35,6 @@ while i < len(MACHINE):
 	os.system("date")
 	os.system("sleep 2")
 	if (i < len(MACHINE)):
-		answer = raw_input("Do you want to show the name of files: (y/n): ")
+		answer = raw_input("Do you want to continue: (y/n): ")
         	if (answer == "no" or answer == 'n') :
                 	break
