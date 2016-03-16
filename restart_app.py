@@ -2,7 +2,7 @@
 
 import os
 import argparse
-
+#import subprocess 
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", 
 		   help="Machine name such as parser, spliter, writer, etc",
@@ -17,7 +17,9 @@ args = parser.parse_args()
 
 MACHINE = []
 with os.popen("cat"+" " +args.g) as f: 
-	MACHINE=[line.split()[0] for line in f]
+	MACHINE=[line.split() for line in f]
+
+#MACHINE = subprocess.check_output(['cut', '-d ', '-f1', 'hosts']).split()
 
 i = 0
 while i < len(MACHINE):
