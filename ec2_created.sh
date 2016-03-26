@@ -90,3 +90,10 @@ echo "##########"
 
 #echo "HOST: "$1" : "$INSTANCE"
 ec2-create-tags --region $REGION $INSTANCE --tag Name=$NAME
+
+
+# Creating template for ansible roles
+echo "Name of the role that you want to create: "
+read ROLE_NAME
+
+sudo ansible-galaxy init /etc/ansible/ROLE_NAME
